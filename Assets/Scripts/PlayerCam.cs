@@ -14,8 +14,11 @@ public class PlayerCam : MonoBehaviour
     
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Toggle lock state to a value that is not Locked
+        Cursor.lockState = (Cursor.lockState == CursorLockMode.Locked) 
+            ? CursorLockMode.None 
+            : Cursor.lockState;
+
     }
 
     private void Update ()
