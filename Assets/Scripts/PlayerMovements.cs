@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        rb.drag = 5f; // За да спира играчът по-гладко
     }
 
     private void Update()
@@ -43,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
         //калкулира посоката на движение
         moveDirection = Orientation.forward * verticalInput + Orientation.right * horizontalInput; 
 
+        if (moveDirection.magnitude > 0.1f)
+        {   
         rb.AddForce(moveDirection.normalized * moveSpeed * 5f, ForceMode.Force);
+        }
     }
 }

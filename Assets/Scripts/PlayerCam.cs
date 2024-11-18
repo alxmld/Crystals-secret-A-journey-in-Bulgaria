@@ -7,6 +7,8 @@ public class PlayerCam : MonoBehaviour
     public float sensX;
     public float sensY;
 
+    public float smoothing = 10f;
+
     public Transform orientation;
 
     float xRotation;

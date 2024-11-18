@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019d2cf9a22c29242831cbfb38097ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 5
   Orientation: {fileID: 36041418}
 --- !u!1 &351817419
 GameObject:
@@ -1991,8 +1991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecc4da5125a1b3419fdd8979caab5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 60
-  sensY: 60
+  sensX: 30
+  sensY: 30
+  smoothing: 100
   orientation: {fileID: 36041418}
 --- !u!20 &1012628616
 Camera:
