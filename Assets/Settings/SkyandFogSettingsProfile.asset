@@ -237,7 +237,7 @@ MonoBehaviour:
   active: 1
   rotation:
     m_OverrideState: 1
-    m_Value: 304
+    m_Value: 34
   skyIntensityMode:
     m_OverrideState: 1
     m_Value: 1
@@ -255,7 +255,7 @@ MonoBehaviour:
     m_Value: {x: 0.33609667, y: 0.3841857, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 1000
   updateMode:
     m_OverrideState: 0
     m_Value: 0
@@ -422,7 +422,7 @@ MonoBehaviour:
     m_Value: 0
   limitMin:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: -0.66509783
   limitMax:
     m_OverrideState: 1
     m_Value: 14
