@@ -215,7 +215,7 @@ MonoBehaviour:
     m_Value: 64
   m_VolumetricFogBudget:
     m_OverrideState: 0
-    m_Value: 0.5
+    m_Value: 0.25
   m_ResolutionDepthRatio:
     m_OverrideState: 0
     m_Value: 0.5
@@ -255,7 +255,7 @@ MonoBehaviour:
     m_Value: {x: 0.33609667, y: 0.3841857, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 1
-    m_Value: 1000
+    m_Value: 4000
   updateMode:
     m_OverrideState: 0
     m_Value: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
     m_Value: 0
   skyAmbientMode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   windOrientation:
     m_OverrideState: 0
     m_Value: 0
@@ -422,10 +422,10 @@ MonoBehaviour:
     m_Value: 0
   limitMin:
     m_OverrideState: 1
-    m_Value: -0.66509783
+    m_Value: -5
   limitMax:
     m_OverrideState: 1
-    m_Value: 14
+    m_Value: 10.621201
   curveMap:
     m_OverrideState: 0
     m_Value:

@@ -1,46 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private bool isPaused;
+    [SerializeField] private GameObject pauseMenuUI; // Assign your pause menu GameObject here
+    private bool isPaused = false;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("Escape key pressed");
             isPaused = !isPaused;
-        }
-        
-        if(isPaused)
-        {
-            ActivateMenu();
-        }
 
-        else
-        {
-            DeactivateMenu();
+            if (isPaused)
+                ActivateMenu();
+            else
+                DeactivateMenu();
         }
     }
 
-    void ActivateMenu()
+    private void ActivateMenu()
     {
-        Time.timeScale = 0;
+        Debug.Log("Activating Pause Menu");
+        Time.timeScale = 0; // Stops the game
         AudioListener.pause = true;
-        pauseMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(true); // Show the pause menu UI
+        CursorManager.SetCursorLockState(false); // Unlock the cursor
     }
 
     public void DeactivateMenu()
     {
-        Time.timeScale = 1;
+        Debug.Log("Deactivating Pause Menu");
+        Time.timeScale = 1; // Resume the game
         AudioListener.pause = false;
-        pauseMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(false); // Hide the pause menu UI
         isPaused = false;
+        CursorManager.SetCursorLockState(true); // Lock the cursor
     }
 }
