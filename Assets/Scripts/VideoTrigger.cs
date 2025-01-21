@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Video;
 
 public class VideoTrigger : MonoBehaviour
 {
     public GameObject book; // Assign the book object in the Inspector
+    public VideoPlayer videoPlayer; // Assign a VideoPlayer component in the Inspector
+    public float interactionDistance = 3.0f; // Max distance to interact with the book
 
     void Awake()
     {
@@ -14,81 +17,60 @@ public class VideoTrigger : MonoBehaviour
         {
             Debug.LogError("Book GameObject is not assigned. Please assign it in the Inspector.");
         }
+        if (videoPlayer == null)
+        {
+            Debug.LogError("VideoPlayer component is not assigned. Please assign it in the Inspector.");
+        }
     }
 
     void Update()
     {
-        // Check for mouse button down
-        if (Input.GetMouseButtonDown(0))
+        // Detect interaction key press
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Mouse button down detected!");
+            Debug.Log("E key pressed!");
 
-            // Check if the raycast hits the book
-            if (book != null && book == GetClickedObject(out RaycastHit hit))
+            // Check if the player is near the book
+            if (IsPlayerNearBook())
             {
-                Debug.Log("Clicked/Touched the book!");
+                Debug.Log("Player is near the book. Playing video.");
+                PlayVideo();
             }
             else
             {
-                Debug.Log("Click missed the book.");
+                Debug.Log("Player is too far from the book to interact.");
             }
         }
     }
 
-    GameObject GetClickedObject(out RaycastHit hit)
+    private bool IsPlayerNearBook()
     {
-        hit = default;
-        GameObject target = null;
-
-        if (Camera.main == null)
+        if (book == null)
         {
-            Debug.LogError("MainCamera not found. Ensure the camera is tagged as 'MainCamera'.");
-            return null;
-        }
-
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // Check raycast
-        if (Physics.Raycast(ray, out hit))
-        {
-            Debug.Log($"Ray hit object: {hit.collider.gameObject.name}");
-            if (!IsPointerOverUIObject()) // Ensure UI doesn’t block the detection
-            {
-                target = hit.collider.gameObject;
-            }
-        }
-        else
-        {
-            Debug.Log("Raycast did not hit any object.");
-        }
-
-        return target;
-    }
-
-    private bool IsPointerOverUIObject()
-    {
-        // Ensure EventSystem exists
-        if (EventSystem.current == null)
-        {
-            Debug.LogError("EventSystem not found. Ensure you have an EventSystem in the scene.");
             return false;
         }
 
-        PointerEventData ped = new PointerEventData(EventSystem.current)
+        float distance = Vector3.Distance(book.transform.position, Camera.main.transform.position);
+        return distance <= interactionDistance;
+    }
+
+    private void PlayVideo()
+    {
+       if (videoPlayer != null)
         {
-            position = Input.mousePosition
-        };
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(ped, results);
-
-        bool isOverUI = results.Count > 0;
-
-        if (isOverUI)
-        {
-            Debug.Log("Pointer is over a UI element.");
+        if (!videoPlayer.isPlaying)
+            {
+            videoPlayer.Play();
+            Debug.Log("Video is now playing.");
+            }
+        else
+            {
+            Debug.Log("Video is already playing.");
+            }
         }
-
-        return isOverUI;
+    else
+        {
+        Debug.LogError("No VideoPlayer assigned.");
+        }
     }
 }
