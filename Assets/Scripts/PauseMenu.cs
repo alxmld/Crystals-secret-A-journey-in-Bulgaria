@@ -22,19 +22,19 @@ public class PauseMenu : MonoBehaviour
     private void ActivateMenu()
     {
         Debug.Log("Activating Pause Menu");
-        Time.timeScale = 0; // Stops the game
-        AudioListener.pause = true;
+        Time.timeScale = 0; // Stop the game
+        AudioListener.pause = true; // Pause audio
         pauseMenuUI.SetActive(true); // Show the pause menu UI
-        CursorManager.SetCursorLockState(false); // Unlock the cursor
+        CursorManager.SetCursorLockState(false); // Unlock and show the cursor
     }
 
     public void DeactivateMenu()
     {
         Debug.Log("Deactivating Pause Menu");
         Time.timeScale = 1; // Resume the game
-        AudioListener.pause = false;
+        AudioListener.pause = false; // Resume audio
         pauseMenuUI.SetActive(false); // Hide the pause menu UI
         isPaused = false;
-        CursorManager.SetCursorLockState(true); // Lock the cursor
+        CursorManager.SetCursorLockState(true); // Lock and hide the cursor
     }
 }

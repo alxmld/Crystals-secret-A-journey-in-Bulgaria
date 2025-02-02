@@ -46,7 +46,7 @@ public class VideoCutscene : MonoBehaviour, IInteractable
         videoPlayer.Play();
     }
 
-    private void EndCutscene(VideoPlayer vp)
+    void EndCutscene(VideoPlayer vp)
     {
         Debug.Log("Cutscene Ended");
 
