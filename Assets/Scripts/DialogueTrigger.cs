@@ -1,39 +1,50 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TriggerDialogue : MonoBehaviour
 {
     public Dialogue dialogueScript; // Reference to the Dialogue script
-    public GameObject triggerButton; // Reference to the button object in the scene
+    public Button[] triggerButtons; // Array of buttons in the scene
     public float delayBeforeDialogue = 5f; // Delay duration in seconds
     private bool isDialogueTriggered = false; // Prevent duplicate dialogue triggers
 
     void Start()
     {
-        if (triggerButton != null)
-        {
-            triggerButton.SetActive(true); // Ensure the button is visible initially
-        }
-
         if (dialogueScript == null)
         {
             Debug.LogError("Dialogue script is not assigned!");
+            return;
+        }
+
+        if (triggerButtons.Length == 0)
+        {
+            Debug.LogError("No trigger buttons assigned!");
+            return;
+        }
+
+        // Assign the OnButtonPress method to each button's onClick event
+        foreach (Button button in triggerButtons)
+        {
+            button.gameObject.SetActive(true); // Ensure buttons are visible
+            button.onClick.AddListener(() => OnButtonPress(button));
         }
     }
 
-    // Function to handle button press and dialogue trigger
-    public void OnButtonPress()
+    // Function to handle button press and trigger dialogue
+    public void OnButtonPress(Button pressedButton)
     {
-        if (!isDialogueTriggered && dialogueScript != null)
+        if (!isDialogueTriggered)
         {
             isDialogueTriggered = true;
 
-            if (triggerButton != null)
+            // Disable all buttons after one is pressed
+            foreach (Button button in triggerButtons)
             {
-                triggerButton.SetActive(false); // Disable the button after it's pressed
+                button.interactable = false;
             }
 
-            StartCoroutine(DelayedDialogueStart()); // Wait before showing dialogue
+            StartCoroutine(DelayedDialogueStart());
         }
     }
 
