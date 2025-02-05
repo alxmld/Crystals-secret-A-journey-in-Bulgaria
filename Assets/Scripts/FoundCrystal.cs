@@ -11,6 +11,8 @@ public class FoundCrystal : MonoBehaviour
     public Camera mainCamera; // Assign the main gameplay camera
     public Camera uiCamera; // Assign the UI camera (the one used for the Canvas)
 
+    public GameObject[] objectsToDisable; // Array of objects to disable when UI is active
+
     void Awake()
     {
         if (crystal == null)
@@ -43,28 +45,44 @@ public class FoundCrystal : MonoBehaviour
         {
             Debug.Log("R key pressed!");
 
-            // Check if the player is near the crystal
-            if (IsPlayerNearCrystal())
+            // Check if the player is near and looking at the crystal
+            if (IsPlayerNearAndLookingAtCrystal())
             {
-                Debug.Log("Player is near the crystal. Showing UI.");
+                Debug.Log("Player is near and looking at the crystal. Showing UI.");
                 ShowCanvas();
             }
             else
             {
-                Debug.Log("Player is too far from the crystal to interact.");
+                Debug.Log("Player is either too far or not looking at the crystal.");
             }
         }
     }
 
-    private bool IsPlayerNearCrystal()
+    private bool IsPlayerNearAndLookingAtCrystal()
     {
-        if (crystal == null)
+        if (crystal == null || Camera.main == null)
         {
             return false;
         }
 
+        // Check distance
         float distance = Vector3.Distance(crystal.transform.position, Camera.main.transform.position);
-        return distance <= interactionDistance;
+        if (distance > interactionDistance) return false;
+
+        // Check if the cursor is over the crystal using raycasting
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject == crystal)
+            {
+                Debug.Log("Cursor is over the crystal.");
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void ShowCanvas()
@@ -77,6 +95,9 @@ public class FoundCrystal : MonoBehaviour
             // Switch cameras
             if (mainCamera != null) mainCamera.gameObject.SetActive(false);
             if (uiCamera != null) uiCamera.gameObject.SetActive(true);
+
+            // Disable specified objects
+            SetObjectsActive(objectsToDisable, false);
 
             // Unlock the cursor
             Cursor.lockState = CursorLockMode.None;
@@ -100,9 +121,26 @@ public class FoundCrystal : MonoBehaviour
             if (mainCamera != null) mainCamera.gameObject.SetActive(true);
             if (uiCamera != null) uiCamera.gameObject.SetActive(false);
 
+            // Re-enable specified objects
+            SetObjectsActive(objectsToDisable, true);
+
             // Lock the cursor back
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+    }
+
+    // Helper function to enable/disable multiple GameObjects
+    private void SetObjectsActive(GameObject[] objects, bool isActive)
+    {
+        if (objects == null) return;
+
+        foreach (GameObject obj in objects)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(isActive);
+            }
         }
     }
 }
