@@ -37,4 +37,10 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         CursorManager.SetCursorLockState(true); // Lock and hide the cursor
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game...");
+        Application.Quit();
+    }
 }
