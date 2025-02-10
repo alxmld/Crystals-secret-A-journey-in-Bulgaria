@@ -21,7 +21,7 @@ public class MenuController : MonoBehaviour
 
     [Header("Graphics Settings")]
     private int _qualityLevel;
-    private bool _isFullScreen;
+    private bool _isFullScreen = true;
 
     [Header("Resolution Dropdown")]
     public TMP_Dropdown resolutionDropdown;
@@ -87,7 +87,15 @@ public class MenuController : MonoBehaviour
     public void GameplayApply()
     {
         PlayerPrefs.SetFloat("masterSen", mainControllerSen);
-        PlayerPrefs.SetInt("masterFullscreen", (_isFullScreen ? 1 : 0));
+        if (_isFullScreen)
+        {
+            PlayerPrefs.SetInt("masterFullscreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("masterFullscreen", 0);
+        }
+
         Screen.fullScreen = _isFullScreen;
         StartCoroutine(ConfirmationBox());
     }
