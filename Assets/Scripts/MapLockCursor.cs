@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class MapsLockCursor : MonoBehaviour
 {
-    // Call this method from the UI Button's OnClick event
+    // Този метод се вика от OnClick евент на бутон
     public void LockAndHideCursor()
     {
-        // Lock the cursor to the center of the screen
+        // Заключва и скрива курсора в центъра на екрана
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Hide the cursor
+        // Скрива курсора
         Cursor.visible = false;
-
-        Debug.Log("Cursor is now locked and hidden.");
     }
 }

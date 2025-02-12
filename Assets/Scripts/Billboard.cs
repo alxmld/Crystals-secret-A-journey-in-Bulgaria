@@ -4,8 +4,8 @@ public class Billboard : MonoBehaviour
 {
     [SerializeField] private BillboardType billboardType;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private float hoverDistance = 5f;  // Distance at which the sprite will appear
-    [SerializeField] private GameObject targetObject;  // The game object the sprite should appear over
+    [SerializeField] private float hoverDistance = 5f;  // Дистанция, от която спрайта ще се показва
+    [SerializeField] private GameObject targetObject;  // За обекта, над който ще излиза спрайта
 
     public enum BillboardType { LookAtCamera, CameraForward };
 

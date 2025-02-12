@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI; // Назначете вашето UI меню за пауза в инспектора
+    [SerializeField] private GameObject pauseMenuUI; // За UI на менюто за пауза
     [SerializeField] private GameObject[] restrictedObjects; // Масив от обекти, които ще блокират менюто за пауза
     private bool isPaused = false; // Проследява дали играта е на пауза
 
@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
         // Проверява дали е натиснат клавишът "Escape"
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Ако някой от обектите в масива е активен, не позволява изпълнение на паузата
+            // Ако някой от обектите в масива е активен, не позволява изпълнение
             if (IsAnyRestrictedObjectActive())
             {
                 return; // Спира изпълнението на кода
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0; // Спира времето в играта
         AudioListener.pause = true; // Спира звука
-        pauseMenuUI.SetActive(true); // Показва UI менюто за пауза
+        pauseMenuUI.SetActive(true); // Показва UI на менюто за пауза
         CursorManager.SetCursorLockState(false); // Отключва и показва курсора на мишката
     }
 
