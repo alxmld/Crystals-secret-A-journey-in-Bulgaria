@@ -4063,6 +4063,7 @@ MonoBehaviour:
   - {fileID: 1664507796}
   - {fileID: 1368735066}
   homeButton: {fileID: 2014024517}
+  crystalsActivated: []
 --- !u!1 &265644194
 GameObject:
   m_ObjectHideFlags: 0
@@ -13027,7 +13028,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1664507796}
+      - m_Target: {fileID: 2014024515}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2014024517}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2014024517}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
         m_Mode: 6
@@ -17952,6 +17977,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MapsLockCursor, Assembly-CSharp
         m_MethodName: LockAndHideCursor
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2014024517}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2014024515}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -23913,6 +23962,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2014024517}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2014024515}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1368735067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28122,7 +28195,7 @@ GameObject:
   - component: {fileID: 1569721534}
   - component: {fileID: 1569721533}
   m_Layer: 7
-  m_Name: FoundCrystalCanvas (1)
+  m_Name: FoundCrystalCanvasRilaRodopi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30342,7 +30415,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 747337585}
+      - m_Target: {fileID: 2014024515}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2014024517}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2014024517}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
         m_Mode: 6
@@ -34381,8 +34478,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1958347004}
   - component: {fileID: 1958347003}
-  - component: {fileID: 1958347005}
   - component: {fileID: 1958347006}
+  - component: {fileID: 1958347005}
   m_Layer: 0
   m_Name: ObjObserver
   m_TagString: Untagged
@@ -34402,9 +34499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd3cf395f55312429fbcb286b6c5f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGameObject: {fileID: 579718620}
-  roomGameObject: {fileID: 919132147672901673}
-  cave: {fileID: 5739805112067162564}
+  prevFoundCrystalCanvas: {fileID: 579718620}
+  room: {fileID: 919132147672901673}
   targetButtons:
   - {fileID: 1052250416}
   - {fileID: 1368735066}
@@ -34437,8 +34533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06b4be8ed9fbb148948c26ec46d0c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetButton: {fileID: 2014024517}
-  otherGameObject: {fileID: 919132147672901673}
+  targetButton: {fileID: 2014024515}
+  roomGameObject: {fileID: 919132147672901673}
 --- !u!114 &1958347006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34446,14 +34542,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958347002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd3cf395f55312429fbcb286b6c5f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGameObject: {fileID: 1569721532}
-  roomGameObject: {fileID: 0}
-  cave: {fileID: 919132149292658144}
+  prevFoundCrystalCanvas: {fileID: 0}
+  room: {fileID: 0}
   targetButtons:
   - {fileID: 1432692444}
   targetImages:
@@ -36448,6 +36543,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1998381758}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2014024515}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -46369,6 +46476,7 @@ MonoBehaviour:
   objectsToDisable:
   - {fileID: 2090830245}
   - {fileID: 7215671370885545858}
+  homeButton: {fileID: 2014024517}
 --- !u!33 &4082345164316999651
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -60535,6 +60643,7 @@ MonoBehaviour:
   objectsToDisable:
   - {fileID: 3558022790211068532}
   - {fileID: 1155630183}
+  homeButton: {fileID: 2014024517}
 --- !u!33 &9189520851925975712
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -1,16 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Disabler : MonoBehaviour
 {
-    public Button targetButton; // Assign the UI Button in the Inspector
-    public GameObject otherGameObject; // Assign the GameObject that should disable the button
+    public GameObject targetButton; // Assign the UI Button in the Inspector
+    public GameObject roomGameObject; // Assign the GameObject that should disable the button
 
     void Update()
     {
-        if (targetButton != null && otherGameObject != null)
+        if (targetButton != null && roomGameObject != null)
         {
-            targetButton.interactable = !otherGameObject.activeSelf;
+            bool isOtherActive = roomGameObject.activeSelf;
+
+            // Disable targetButton only when roomGameObject is active
+            targetButton.SetActive(!isOtherActive);
         }
     }
 }

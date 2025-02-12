@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FoundCrystal : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class FoundCrystal : MonoBehaviour
     public Camera uiCamera; // Assign the UI camera (the one used for the Canvas)
 
     public GameObject[] objectsToDisable; // Array of objects to disable when UI is active
+    public Button homeButton;
 
     void Awake()
     {
@@ -127,6 +129,8 @@ public class FoundCrystal : MonoBehaviour
             // Lock the cursor back
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            homeButton.interactable = true;
         }
     }
 
