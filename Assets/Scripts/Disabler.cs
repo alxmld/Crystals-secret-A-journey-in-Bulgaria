@@ -2,17 +2,22 @@ using UnityEngine;
 
 public class Disabler : MonoBehaviour
 {
-    public GameObject targetButton; // Assign the UI Button in the Inspector
-    public GameObject roomGameObject; // Assign the GameObject that should disable the button
+    public GameObject[] targetButtons; // Array of UI Buttons to enable/disable
+    public GameObject roomGameObject;  // The GameObject that controls button visibility
 
     void Update()
     {
-        if (targetButton != null && roomGameObject != null)
-        {
-            bool isOtherActive = roomGameObject.activeSelf;
+        if (roomGameObject == null || targetButtons == null) return;
 
-            // Disable targetButton only when roomGameObject is active
-            targetButton.SetActive(!isOtherActive);
+        bool isOtherActive = roomGameObject.activeSelf;
+
+        // Iterate through all buttons and enable/disable them
+        foreach (GameObject button in targetButtons)
+        {
+            if (button != null)
+            {
+                button.SetActive(!isOtherActive);
+            }
         }
     }
 }
