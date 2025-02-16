@@ -4,6 +4,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI; // За UI на менюто за пауза
     [SerializeField] private GameObject[] restrictedObjects; // Масив от обекти, които ще блокират менюто за пауза
+    public GameObject[] crosshairs; // Масив за мерници
     private bool isPaused = false; // Проследява дали играта е на пауза
 
     private void Update()
@@ -46,6 +47,7 @@ public class PauseMenu : MonoBehaviour
         AudioListener.pause = true; // Спира звука
         pauseMenuUI.SetActive(true); // Показва UI на менюто за пауза
         CursorManager.SetCursorLockState(false); // Отключва и показва курсора на мишката
+        SetCrosshairsActive(false); // Скрива мерниците
     }
 
     // Деактивира менюто за пауза
@@ -56,11 +58,21 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false); // Скрива UI менюто за пауза
         isPaused = false; // Задава флага за пауза на false
         CursorManager.SetCursorLockState(true); // Заключва и скрива курсора на мишката
+        SetCrosshairsActive(true); // Показва мерниците
     }
 
     // Функция за изход от играта
     public void QuitGame()
     {
         Application.Quit(); // Затваря играта
+    }
+
+    // Функция за активиране/деактивиране на всички мерници
+    private void SetCrosshairsActive(bool state)
+    {
+        foreach (GameObject crosshair in crosshairs)
+        {
+            crosshair.SetActive(state);
+        }
     }
 }
