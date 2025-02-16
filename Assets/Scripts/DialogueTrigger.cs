@@ -27,23 +27,16 @@ public class TriggerDialogue : MonoBehaviour
         foreach (Button button in triggerButtons)
         {
             button.gameObject.SetActive(true); // Ensure buttons are visible
-            button.onClick.AddListener(() => OnButtonPress(button));
+            button.onClick.AddListener(() => OnButtonPress());
         }
     }
 
     // Function to handle button press and trigger dialogue
-    public void OnButtonPress(Button pressedButton)
+    public void OnButtonPress()
     {
         if (!isDialogueTriggered)
         {
             isDialogueTriggered = true;
-
-            // Disable all buttons after one is pressed
-            foreach (Button button in triggerButtons)
-            {
-                button.interactable = false;
-            }
-
             StartCoroutine(DelayedDialogueStart());
         }
     }
