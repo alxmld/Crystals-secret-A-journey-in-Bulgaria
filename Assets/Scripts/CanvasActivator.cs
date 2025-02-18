@@ -2,57 +2,57 @@ using UnityEngine;
 
 public class CanvasActivator : MonoBehaviour
 {
-    public Canvas worldSpaceCanvas;   // Assign the Canvas in the Inspector
-    public float activationDistance = 5f;  // Distance from the object where the canvas will be activated
-
-    private Camera playerCamera;
-    private bool isHovering = false;
+    public Canvas worldSpaceCanvas;   // Канвасът, който ще се показва и скрива
+    public float activationDistance = 5f;  // Разстояние, от което канваса ще се активира
+    private Camera playerCamera;  // Референция към главната камера на играча
+    private bool isHovering = false;  // Проследява дали мишката е върху обекта
 
     void Start()
     {
-        playerCamera = Camera.main;
+        playerCamera = Camera.main;  // Взима главната камера
         if (worldSpaceCanvas != null)
         {
-            worldSpaceCanvas.gameObject.SetActive(false);  // Start with canvas hidden
+            worldSpaceCanvas.gameObject.SetActive(false);  // Скрива платното в началото
         }
     }
 
     void Update()
     {
-        // Check if the player is within activation distance
+        // Изчислява разстоянието между камерата на играча и обекта
         float distance = Vector3.Distance(playerCamera.transform.position, transform.position);
-        bool isNear = distance <= activationDistance;
+        bool isNear = distance <= activationDistance;  // Проверява дали играчът е в обхвата
 
-        // Only proceed if the player is close enough to the object
+        // Ако играчът е достатъчно близо
         if (isNear)
         {
             RaycastHit hit;
-            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition); // Ray from camera to mouse position
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition); // Изпраща лъч от камерата към позицията на мишката
 
-            // Check if the ray hits the object (this should be the object with the script attached)
+            // Проверява дали лъчът удря някакъв колайдер на обект
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform == transform)  // Check if the ray hits the same object
+                // Ако удари обекта, на който е закачен скрипта 
+                if (hit.transform == transform)
                 {
                     isHovering = true;
-                    worldSpaceCanvas.gameObject.SetActive(true);  // Show the canvas when hovering
+                    worldSpaceCanvas.gameObject.SetActive(true);  // Показва платното
                 }
                 else
                 {
                     isHovering = false;
-                    worldSpaceCanvas.gameObject.SetActive(false);  // Hide canvas when not hovering
+                    worldSpaceCanvas.gameObject.SetActive(false);  // Скрива платното, ако мишката не е върху обекта
                 }
             }
             else
             {
                 isHovering = false;
-                worldSpaceCanvas.gameObject.SetActive(false);  // Hide canvas when ray doesn't hit
+                worldSpaceCanvas.gameObject.SetActive(false);  // Скрива платното, ако лъчът не удари колайдер
             }
         }
         else
         {
             isHovering = false;
-            worldSpaceCanvas.gameObject.SetActive(false);  // Hide canvas when not near
+            worldSpaceCanvas.gameObject.SetActive(false);  // Скрива платното, ако играчът не е наблизо
         }
     }
 }

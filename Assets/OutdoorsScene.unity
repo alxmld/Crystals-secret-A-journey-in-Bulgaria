@@ -11253,7 +11253,7 @@ MonoBehaviour:
     \u041F\u043B\u0430\u043D\u0430, \u043A\u043E\u044F\u0442\u043E \u0435 \u0447\u0430\u0441\u0442
     \u043E\u0442 \u041A\u0440\u0430\u0438\u0449\u0435\u043D\u0441\u043A\u043E-\u0421\u0440\u0435\u0434\u043D\u043E\u0433\u043E\u0440\u0441\u043A\u0430
     \u043F\u0440\u0438\u0440\u043E\u0434\u043D\u0430 \u043E\u0431\u043B\u0430\u0441\u0442
-    \u0438 \u0441\u0435\u043B\u043E \u0414\u043E\u043B\u043D\u0438 \u041E\u043A\u043E\u043B"
+    \u0438 \u0441\u0435\u043B\u043E \u0414\u043E\u043B\u043D\u0438 \u041E\u043A\u043E\u043B."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d3846aecd67cd94bb860f2b5c93481f, type: 2}
   m_sharedMaterial: {fileID: -2783889562413217514, guid: 9d3846aecd67cd94bb860f2b5c93481f,
@@ -31346,7 +31346,7 @@ MonoBehaviour:
     \u0433\u0440\u0430\u0434 \u041A\u044A\u0440\u0434\u0436\u0430\u043B\u0438, \u041C\u043E\u043C\u0447\u0438\u043B\u0433\u0440\u0430\u0434
     \u0438 \u041F\u0440\u0438\u043C\u043E\u0440\u0441\u043A\u043E (\u0433\u0440\u0430\u0434
     \u0432 \u0427\u0435\u0440\u043D\u043E\u043C\u043E\u0440\u0441\u043A\u0430\u0442\u0430
-    \u043F\u0440\u0438\u0440\u043E\u0434\u043D\u0430 \u043E\u0431\u043B\u0430\u0441\u0442)"
+    \u043F\u0440\u0438\u0440\u043E\u0434\u043D\u0430 \u043E\u0431\u043B\u0430\u0441\u0442)."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d3846aecd67cd94bb860f2b5c93481f, type: 2}
   m_sharedMaterial: {fileID: -2783889562413217514, guid: 9d3846aecd67cd94bb860f2b5c93481f,
@@ -37992,7 +37992,7 @@ MonoBehaviour:
   dialogueScript: {fileID: 1913502098}
   triggerButtons:
   - {fileID: 2014024517}
-  delayBeforeDialogue: 3
+  delayBeforeDialogue: 1
 --- !u!1 &1799083091
 GameObject:
   m_ObjectHideFlags: 0
@@ -60830,7 +60830,6 @@ GameObject:
   - component: {fileID: 8984105656780065220}
   - component: {fileID: 8984105656780065219}
   - component: {fileID: 8984105656780065222}
-  - component: {fileID: 8984105656780065221}
   - component: {fileID: 8984105656780065223}
   m_Layer: 6
   m_Name: enciklopedia
@@ -66618,18 +66617,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.023702765, y: 0.017756538, z: 0.011993704}
   m_Center: {x: -0.00008742799, y: -0.000011984181, z: -0.00020348518}
---- !u!114 &8984105656780065221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7470636215488456727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda43d87776e0cb46a7ae32044db132b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8984105656780065222
 MonoBehaviour:
   m_ObjectHideFlags: 0

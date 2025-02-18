@@ -4,36 +4,39 @@ using UnityEngine.UI;
 
 public class TriggerDialogue : MonoBehaviour
 {
-    public Dialogue dialogueScript; // Reference to the Dialogue script
-    public Button[] triggerButtons; // Array of buttons in the scene
-    public float delayBeforeDialogue = 5f; // Delay duration in seconds
-    private bool isDialogueTriggered = false; // Prevent duplicate dialogue triggers
+    public Dialogue dialogueScript; // Референция към скрипта, който управлява диалога
+    public Button[] triggerButtons;  // Масив от бутони, които ще задействат диалога
+    public float delayBeforeDialogue = 5f;  // Време за изчакване преди стартиране на диалога (в секунди)
+    private bool isDialogueTriggered = false;  // Флаг, който предотвратява повторно стартиране на диалога
 
     void Start()
     {
+        // Проверка дали е зададен скриптът за диалог
         if (dialogueScript == null)
         {
             Debug.LogError("Dialogue script is not assigned!");
             return;
         }
 
+        // Проверка дали са зададени бутони
         if (triggerButtons.Length == 0)
         {
             Debug.LogError("No trigger buttons assigned!");
             return;
         }
 
-        // Assign the OnButtonPress method to each button's onClick event
+        // Добавя OnButtonPress към onClick събитието на всеки бутон
         foreach (Button button in triggerButtons)
         {
-            button.gameObject.SetActive(true); // Ensure buttons are visible
-            button.onClick.AddListener(() => OnButtonPress());
+            button.gameObject.SetActive(true); // Проверява видимостта на бутоните
+            button.onClick.AddListener(() => OnButtonPress()); // Добавя слушател за натискане на бутона
         }
     }
 
-    // Function to handle button press and trigger dialogue
+    // Функция, която се изпълнява при натискане на бутон
     public void OnButtonPress()
     {
+        // Ако диалогът още не е стартиран, стартираме го с отлагане
         if (!isDialogueTriggered)
         {
             isDialogueTriggered = true;
@@ -41,11 +44,11 @@ public class TriggerDialogue : MonoBehaviour
         }
     }
 
-    // Delays the start of the dialogue by 'delayBeforeDialogue' seconds
+    // Корутина, която изчаква преди да стартира диалога
     private IEnumerator DelayedDialogueStart()
     {
-        yield return new WaitForSeconds(delayBeforeDialogue); // Wait for the specified time
-        dialogueScript.gameObject.SetActive(true); // Activate the dialogue box object
-        dialogueScript.StartDialogue(); // Start the dialogue sequence
+        yield return new WaitForSeconds(delayBeforeDialogue); // Изчаква зададеното време
+        dialogueScript.gameObject.SetActive(true); // Активира обекта за диалога
+        dialogueScript.StartDialogue(); // Стартира диалога
     }
 }

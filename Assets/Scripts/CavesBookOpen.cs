@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class CavesBookOpen : MonoBehaviour
 {
-    public GameObject GameObject; // This is the menu you want to activate
-    public GameObject[] caves;       // Array of caves GameObjects
+    public GameObject GameObject; // Обектът, който ще се активира (UI прозорец)
+    public GameObject[] caves; // Масив от обекти, които са пещери
 
-    // Update is called once per frame
     void Update()
     {
-        // Check if the "E" key is pressed
+        //  Проверка дали е натиснат клавишът "E" за взаимодействие
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Iterate through the caves array to see if any GameObject is active
+            // Обхожда масива от пещери, за да провери дали някоя е активна
             foreach (GameObject cave in caves)
             {
-                if (cave.activeSelf)
+                if (cave.activeSelf) // Ако някоя от пещерите в масива е активна
                 {
-                    // Activate the menu GameObject
+                    // Активира UI прозореца
                     GameObject.SetActive(true);
 
-                    // Unlock and show the cursor
+                    // Отключва и показва курсора
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
 
-                    // Break out of the loop once a condition is met
+                    // Прекъсва цикъла ако даденото условие е изпълнено
                     break;
                 }
             }

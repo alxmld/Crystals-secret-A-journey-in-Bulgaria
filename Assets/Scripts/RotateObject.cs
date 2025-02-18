@@ -1,45 +1,38 @@
 using UnityEngine;
 
-
-// Скрипт за въртене на обект с мишката
 public class RotateObject : MonoBehaviour
 {
-    //--------- ПРОМЕНЛИВИ и ВРЪЗКИ ---------
-    [SerializeField] float rotationSpeed = 20f;
-    [SerializeField] bool isDragging = false;
-    [SerializeField] Rigidbody rb;
+    [SerializeField] float rotationSpeed = 20f; // За бързината за въртене на обекта
+    [SerializeField] bool isDragging = false; // Задава, че няма задържане на левия бутон и преместване на мишката
+    [SerializeField] Rigidbody rb; // За обекта с Rigidbody компонент, който ще въртим
 
-
-    //--------- ФУНКЦИИ ---------
-    // Вика се в началото на играта и създава връзка между скрипта и компонента
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Извиква се при задържане на бутона на мишката
+    // Извиква се при задържане на левия бутон и преместване на мишката
     void OnMouseDrag()
     {
-        isDragging = true;
+        isDragging = true; // Задава, че има задържане на левия бутон и преместване на мишката
     }
 
-    // Извиква се при всяко обновление на сцената
     void Update()
     {
-        // Проверка дали бутона на мишката е отпуснат
+        // Ако левия бутон на мишката е отпуснат
         if (Input.GetMouseButtonUp(0))
         {
-            isDragging = false;
+            isDragging = false; // Задава, че няма задържане на левия бутон и преместване на мишката
         }
     }
 
     // Извиква се при фиксиран интервал за физически пресмятания
     void FixedUpdate()
     {
-        // Проверка дали се задържа бутона на мишката
+        // Ако има задържане на левия бутон и преместване на мишката
         if (isDragging)
         {
-            // Изчисляване на въртенето и прилагане на торк
+            // Изчислява въртенето и прилага на торк
             float x = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
             rb.AddTorque(Vector3.down * x);
         }

@@ -5,16 +5,14 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    public GameObject dialoguePanel; // Dialogue box UI
-    public TextMeshProUGUI textComponent; // Text field for displaying dialogue
-    public string[] lines; // Array of dialogue lines
-    public float textSpeed; // Typing speed for the dialogue
+    public GameObject dialoguePanel; // Панел за текста
+    public TextMeshProUGUI textComponent; // Текстовото поле
+    public string[] lines; // Масив от редове тексто за показване 
+    public float textSpeed; // Бързина на показване на текста
+    private int index; 
+    private bool isTyping = false; // Задава, че в момента текстът не се изписва
+    private Coroutine typingCoroutine; 
 
-    private int index; // Index of the current line
-    private bool isTyping = false; // Flag to check if typing is ongoing
-    private Coroutine typingCoroutine; // Reference to the active typing coroutine
-
-    // Start is called before the first frame update
     public void Start()
     {
         if (dialoguePanel == null || textComponent == null)
@@ -23,29 +21,27 @@ public class Dialogue : MonoBehaviour
             return;
         }
 
-        textComponent.text = string.Empty; // Clear any text from previous dialogue
-        dialoguePanel.SetActive(false); // Dialogue box starts hidden
+        textComponent.text = string.Empty; // Маха предишен текст
+        dialoguePanel.SetActive(false); // Скрива панела за текст
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && dialoguePanel.activeSelf)
+        if (Input.GetMouseButtonDown(0) && dialoguePanel.activeSelf) // Ако левия бутон на мишката е натиснат докато панел е активен
         {
             if (isTyping)
             {
-                StopCoroutine(typingCoroutine); // Stop typing
-                textComponent.text = lines[index]; // Display full current line
-                isTyping = false;
+                StopCoroutine(typingCoroutine); // Спира писането
+                textComponent.text = lines[index]; // И показва целия текущ ред с текст
+                isTyping = false; // Задава, че в момента текстът не се изписва
             }
-            else if (textComponent.text == lines[index])
+            else if (textComponent.text == lines[index]) // Ако нищо не е натиснато
             {
-                NextLine();
+                NextLine(); // Продължава със следващия ред с текст
             }
         }
     }
 
-    // Starts the dialogue
     public void StartDialogue()
     {
         if (lines == null || lines.Length == 0)
@@ -54,43 +50,41 @@ public class Dialogue : MonoBehaviour
             return;
         }
 
-        index = 0; // Start from the first line
-        textComponent.text = string.Empty; // Clear text before starting
-        dialoguePanel.SetActive(true); // Make sure the dialogue box appears
-        typingCoroutine = StartCoroutine(TypeLine()); // Begin typing the first line
+        index = 0; // Започва с първия ред текст
+        textComponent.text = string.Empty; // Премахва текст преди да започне
+        dialoguePanel.SetActive(true); // Активира панела за текста
+        typingCoroutine = StartCoroutine(TypeLine()); //
     }
 
-    // Coroutine that types out a single line of dialogue
     private IEnumerator TypeLine()
     {
         isTyping = true;
         foreach (char c in lines[index].ToCharArray())
         {
-            textComponent.text += c; // Add each character to the text field
-            yield return new WaitForSeconds(textSpeed); // Wait for the next character
+            textComponent.text += c; // За добавяне на символи в текстовото поле
+            yield return new WaitForSeconds(textSpeed); // Изчаква малко преди да изпише следващия символ 
         }
-        isTyping = false; // Typing finished
+        isTyping = false; // Задава, че в момента текстът не се изписва
     }
 
-    // Goes to the next line or ends the dialogue
     private void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < lines.Length - 1) // Ако текущият ред с текст е изписан напълно
         {
-            index++; // Move to the next line
-            textComponent.text = string.Empty; // Clear the text box
-            typingCoroutine = StartCoroutine(TypeLine()); // Type out the next line
+            index++; // Отива на следващия ред текст
+            textComponent.text = string.Empty; // Премахва предишния текст
+            typingCoroutine = StartCoroutine(TypeLine()); // Изписва следващия ред с текст
         }
         else
         {
-            EndDialogue(); // End the dialogue
+            EndDialogue();
         }
     }
 
-    // Ends the dialogue and hides the dialogue box
+    // Функция за приклюване и скриване на прозореца за текст и текстовото поле
     private void EndDialogue()
     {
-        textComponent.text = string.Empty; // Clear any remaining text
-        dialoguePanel.SetActive(false); // Hide the dialogue box
+        textComponent.text = string.Empty; // Премахва останал текст
+        dialoguePanel.SetActive(false); // Скрива прозореца с текст
     }
 }

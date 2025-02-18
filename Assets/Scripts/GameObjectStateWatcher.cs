@@ -3,37 +3,37 @@ using UnityEngine.UI;
 
 public class GameObjectStateWatcher : MonoBehaviour
 {
-    public GameObject prevFoundCrystalCanvas;   // The one that should be inactive
-    public GameObject room;  // The one that should be active
-    public Button[] targetButtons;       // Array of buttons to enable
-    public GameObject[] targetImages;    // Array of images to hide
+    public GameObject prevFoundCrystalCanvas; // Канвас, който вече не трябва да е активен
+    public GameObject room; // Обектът, който трябва да е активен в момента
+    public Button[] targetButtons; // Масив от бутони за активиране
+    public GameObject[] targetImages; // Масив от изображения за скриване
 
-    private bool prevFoundCrystalCanvasWasActive = false;
+    private bool prevFoundCrystalCanvasWasActive = false; // Задава, че канвасите все още не са открити
 
     void Update()
     {
-        // Check if the first object was active and is now inactive
+        // Проверява дали вървия обект е бил активен и вече не е
         if (prevFoundCrystalCanvas.activeSelf)
         {
-            prevFoundCrystalCanvasWasActive = true;
+            prevFoundCrystalCanvasWasActive = true; // Ако вече не е връща true
         }
 
-        // If the first object was active but is now inactive, and the second object is active
+        // Ако първия обект, в случар канваса, е бил активен и вече не е и втория обект е активен
         if (prevFoundCrystalCanvasWasActive && !prevFoundCrystalCanvas.activeSelf && room.activeSelf)
         {
-            // Enable all buttons in the array
+            // Активира всички бутони в масива
             foreach (Button btn in targetButtons)
             {
                 btn.interactable = true;
             }
 
-            // Hide all images in the array
+            // Скрива всички изображения в масива
             foreach (GameObject img in targetImages)
             {
                 img.SetActive(false);
             }
 
-            // Optionally, disable this script if no longer needed
+            // Деактивира скрипта
             enabled = false;
         }
     }
