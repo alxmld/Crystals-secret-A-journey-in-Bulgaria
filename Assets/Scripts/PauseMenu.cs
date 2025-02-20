@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject[] crosshairs; // Масив за мерници
     private bool isPaused = false; // Проследява дали играта е на пауза
 
+    [SerializeField] private CavesBookOpen cavesBookOpenScript; // Референция към CavesBookOpen скрипта
+
     private void Update()
     {
         // Проверява дали е натиснат клавишът "Escape"
@@ -48,6 +50,12 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true); // Показва UI на менюто за пауза
         CursorManager.SetCursorLockState(false); // Отключва и показва курсора на мишката
         SetCrosshairsActive(false); // Скрива мерниците
+
+        // Деактивира CavesBookOpen скрипта
+        if (cavesBookOpenScript != null)
+        {
+            cavesBookOpenScript.enabled = false;
+        }
     }
 
     // Деактивира менюто за пауза
@@ -59,6 +67,12 @@ public class PauseMenu : MonoBehaviour
         isPaused = false; // Задава флага за пауза на false
         CursorManager.SetCursorLockState(true); // Заключва и скрива курсора на мишката
         SetCrosshairsActive(true); // Показва мерниците
+
+        // Активира CavesBookOpen скрипта
+        if (cavesBookOpenScript != null)
+        {
+            cavesBookOpenScript.enabled = true;
+        }
     }
 
     // Функция за изход от играта
