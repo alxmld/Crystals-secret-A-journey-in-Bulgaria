@@ -4,97 +4,100 @@ using UnityEngine.Video;
 
 public class VideoCutscene : MonoBehaviour, IInteractable
 {
-    public VideoPlayer videoPlayer; // Reference to the VideoPlayer component
-    public GameObject videoCanvas; // Reference to the canvas displaying the video
-    public GameObject bookCanvas;
-    public Button closeButton; // Reference to the Button component for closing
+    public VideoPlayer videoPlayer; // Video player, който възпроизвежда видеото
+    public GameObject videoCanvas; // Канвас, който показва видеото
+    public GameObject bookCanvas; // Канвас, който показва енциклопедията след края на видеото
+    public Button closeButton; // Бутонът, който затваря енциклопедията
 
+    // Методът Interact се извиква, когато играчът взаимодейства с обекта
     public void Interact()
     {
-        PlayCutscene();
+        PlayCutscene(); // Стартира възпроизвеждането на кътсцената
     }
 
+    // Метод за стартиране на кътсцената
     private void PlayCutscene()
     {
+        // Проверява дали VideoPlayer и videoCanvas са налични
         if (videoPlayer == null || videoCanvas == null)
         {
-            Debug.LogWarning("Missing VideoPlayer or VideoCanvas reference!");
+            Debug.LogWarning("Липсва референция към VideoPlayer или VideoCanvas!");
             return;
         }
 
-        videoPlayer.Stop();
-        videoPlayer.frame = 0;
+        videoPlayer.Stop(); // Спира видеото, ако е пуснато
+        videoPlayer.frame = 0; // Връща видеото към първия кадър
 
-        // Clear the render texture to avoid showing the last frame
+        // Изчиства Render Texture, за да не се показва последния кадър от кътсцената
         if (videoPlayer.targetTexture != null)
         {
             RenderTexture renderTexture = videoPlayer.targetTexture;
             RenderTexture.active = renderTexture;
-            GL.Clear(true, true, Color.black); // Clears the texture with a black background
+            GL.Clear(true, true, Color.black); // Изчиства текстурата с черен фон
             RenderTexture.active = null;
         }
 
-        videoCanvas.SetActive(true); // Activate the canvas to show the video
-        Debug.Log("Attempting to play video.");
+        videoCanvas.SetActive(true); // Активира канваса, който показва видеото
 
-        Time.timeScale = 0;
+        Time.timeScale = 0; // Спира времето в играта, докато видеото се възпроизвежда
 
-        // Ensure the listener is only added once to avoid stacking
-        videoPlayer.loopPointReached -= EndCutscene; // Unsubscribe first to avoid duplication
+        // Добавяне на слушател за събитието loopPointReached, което се извиква, когато видеото приключи
+        videoPlayer.loopPointReached -= EndCutscene; // Премахване на слушателя, за да се избегне дублиране
         videoPlayer.loopPointReached += EndCutscene;
 
-        videoPlayer.Play();
+        videoPlayer.Play(); // Пуска видеото
     }
 
+    // Метод, който се извиква, когато видеото приключи
     void EndCutscene(VideoPlayer vp)
     {
-        Debug.Log("Cutscene Ended");
 
-        // Deactivate the canvas showing the video
+        // Деактивира канваса, който показва видеото
         if (videoCanvas != null)
         {
-            Debug.Log("Hiding video canvas.");
+            Debug.Log("Скриване на видео Canvas.");
             videoCanvas.SetActive(false);
         }
 
-        // Activate the bookCanvas to display it after the cutscene ends
+        // Активира канваса, който показва енциклопедията след края на видеото
         if (bookCanvas != null)
         {
-            Debug.Log("Showing book canvas.");
+            Debug.Log("Показване на Canvas на енциклопедията.");
             bookCanvas.SetActive(true);
 
-            // Optionally assign the close button click event if not set in the inspector
+            // Добавяне на слушател за бутона за затваряне, ако не е зададен в инспектора
             if (closeButton != null)
             {
-                closeButton.onClick.RemoveAllListeners(); // Avoid stacking listeners
+                closeButton.onClick.RemoveAllListeners(); // Премахване на всички слушатели, за да се избегне дублиране
                 closeButton.onClick.AddListener(CloseBookCanvas);
             }
         }
 
-        // Unlock the cursor and make it visible
+        // Отключва курсора и прави го видим
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Reset the VideoPlayer
+        // Рестартира VideoPlayer
         videoPlayer.Stop();
         videoPlayer.frame = 0;
 
-        // Resume game time
+        // Възстановява времето в играта
         Time.timeScale = 1;
 
-        // Clean up the listener to avoid potential memory leaks
+        // Премахва слушателя, за да се избегнат потенциални изтичания на памет
         videoPlayer.loopPointReached -= EndCutscene;
     }
 
+    // Метод за затваряне на канваса с енциклопедията
     public void CloseBookCanvas()
     {
         if (bookCanvas != null)
         {
-            Debug.Log("Closing book canvas.");
+            Debug.Log("Затваряне на Canvas на енциклопедията.");
             bookCanvas.SetActive(false);
         }
 
-        // Lock the cursor and make it invisible (if necessary)
+        // Заключва курсора и прави го невидим
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
