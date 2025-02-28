@@ -13991,9 +13991,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694240139}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &694240141
 MonoBehaviour:
@@ -17382,9 +17382,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822054893}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &822054895
 MonoBehaviour:
@@ -25987,9 +25987,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274154367}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &1274154369
 MonoBehaviour:
@@ -27647,9 +27647,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331792153}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1331792156
 MonoBehaviour:
@@ -62190,12 +62190,12 @@ RectTransform:
   - {fileID: 153440601}
   - {fileID: 801145636}
   - {fileID: 1559365494}
-  - {fileID: 694240144}
   - {fileID: 1274154372}
   - {fileID: 175462324}
   - {fileID: 2062203333}
-  - {fileID: 1331792154}
   - {fileID: 822054898}
+  - {fileID: 1331792154}
+  - {fileID: 694240144}
   - {fileID: 857553835}
   - {fileID: 1561374220}
   - {fileID: 747735235}
@@ -63201,7 +63201,7 @@ MonoBehaviour:
   interactable: 1
   enableShadowEffect: 0
   hasTransparentPages: 0
-  currentPaper: 5
+  currentPaper: 7
   papers:
   - Front: {fileID: 7953659224450657744}
     Back: {fileID: 7953659223162887872}
