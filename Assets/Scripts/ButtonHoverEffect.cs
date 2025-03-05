@@ -4,15 +4,15 @@ using UnityEngine.EventSystems;
 
 public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject[] hoverSprites; // Array of hover sprites
-    private Button button; // Reference to the button component
+    [SerializeField] private GameObject[] hoverSprites;     // Масив от обекти, които ще се показват при ховър
+    private Button button; // За бутона, на който е закачен скрипта
 
     private void Start()
     {
-        // Get the Button component on this GameObject
+        // Взима компонента Button
         button = GetComponent<Button>();
 
-        // Hide all sprites initially
+        // Скрива всички спрайтове в началото на играта
         foreach (GameObject sprite in hoverSprites)
         {
             if (sprite != null)
@@ -20,22 +20,23 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
         }
     }
 
+    // Метод, който се изпълнява, когато курсорът навлезе върху бутона
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Show sprites only if the button is interactable
-        if (button != null && button.interactable)
+        if (button != null && button.interactable) // Ако бутонът е интерактивен
         {
             foreach (GameObject sprite in hoverSprites)
             {
                 if (sprite != null)
-                    sprite.SetActive(true);
+                    sprite.SetActive(true); // Показва всички ховър спрайтове
             }
         }
     }
 
+    // Метод, който се изпълнява, когато курсорът излезе от бутона
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Hide all sprites when not hovering
+        // Скрива всички ховър спрайтове
         foreach (GameObject sprite in hoverSprites)
         {
             if (sprite != null)
